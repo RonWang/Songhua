@@ -5,7 +5,7 @@ const stream = require('stream');
  * This class is used for the transform that needs to make async request immediately using the stream buffer.
  * @extends stream.Transform
  */
-export default class Songhua extends stream.Transform {
+class Songhua extends stream.Transform {
     /**
      * Create a ParallelStream
      * @param {function} transform
@@ -91,3 +91,5 @@ export default class Songhua extends stream.Transform {
         }
     }
 }
+
+module.exports = Songhua;

@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+  - node
+  - "10"
+
+os:
+  - osx
+
+notifications:
+  email:
+    on_failure: always
+    on_success: never
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+
+script:
+  - npm run test:report
