@@ -4,7 +4,11 @@
   "description": "Node.js Stream utility tools.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/mocha/bin/_mocha -u exports -R spec test.js",
+    "test:watch": "node ./node_modules/mocha/bin/_mocha test.js -w",
+    "test:report": "nyc --cache npm test && nyc report --reporter=html",
+    "test:browser": "npm run test:report && open coverage/index.html",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "nodejs",
@@ -14,8 +18,27 @@
   "author": "RonWang",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.5.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "chai": "^3.5.0",
+    "coveralls": "^3.0.2",
+    "husky": "^3.0.8",
+    "mocha": "^3.2.0",
+    "nyc": "^13.3.0",
+    "sinon": "^6.0.0",
+    "semantic-release": "^15.13.24"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint & npm run test:report",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 95,
+    "statements": 95,
+    "functions": 95,
+    "branches": 95
   }
 }
