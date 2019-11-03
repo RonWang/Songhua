@@ -6,6 +6,7 @@ node_js:
 
 os:
   - osx
+  - linux
 
 notifications:
   email:
@@ -19,5 +20,9 @@ cache:
 install:
   - npm install
 
-script:
-  - npm run test:report
+jobs:
+  include:
+    - stage: test
+      script: npm run test:report
+    - stage: deploy
+      script: npx semantic-release
