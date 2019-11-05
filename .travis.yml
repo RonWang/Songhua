@@ -20,9 +20,3 @@ install:
   - npm install
 
 script: npm run test:report
-
-
-jobs:
-  include:
-    - stage: deploy
-      script: npx semantic-release
